@@ -31,6 +31,7 @@ class ItemTable extends Component {
                 rows: [...this.state.rows, entry],
             });
         }
+        this.props.clearFieldFunc();
     };
 
     render() {

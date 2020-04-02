@@ -35,6 +35,13 @@ class Home extends Component {
         });
     }
 
+    clearFields = () => {
+        this.setState({
+            item: '',
+            location: '',
+        });
+    };
+
     render() {
         return (
             <SafeAreaView>
@@ -45,16 +52,19 @@ class Home extends Component {
                             style={styles.entryBox}
                             placeholder="Item"
                             onChangeText={text => this.handleItemChange(text)}
+                            value={this.state.item}
                         />
                         <TextInput
                             style={styles.entryBox}
                             placeholder="Location"
                             onChangeText={text => this.handleLocChange(text)}
+                            value={this.state.location}
                         />
                     </View>
                     <ItemTable
                         item={this.state.item}
                         location={this.state.location}
+                        clearFieldFunc={this.clearFields}
                     />
                 </ScrollView>
             </SafeAreaView>
