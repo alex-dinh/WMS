@@ -13,34 +13,71 @@ import {
     StatusBar,
 } from 'react-native';
 
-const Home: () => React$Node = () => {
-    const [value, onChangeText] = React.useState('Item Entry');
-    return (
-        <SafeAreaView>
-            <ScrollView>
-                <Text style={styles.title}>Where's My Stuff</Text>
-                <TextInput
-                    style={styles.entrybox}
-                    onChangeText={text => onChangeText(text)}
-                    value={value}
-                />
-                <AddButton />
-                <ItemTable />
-            </ScrollView>
-        </SafeAreaView>
-    );
-};
+// const Home: () => React$Node = () => {
+class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            item: '',
+            location: '',
+        };
+    }
+
+    handleItemChange(text) {
+        this.setState({
+            item: text,
+        });
+    }
+
+    handleLocChange(text) {
+        this.setState({
+            location: text,
+        });
+    }
+
+    render() {
+        return (
+            <SafeAreaView>
+                <ScrollView>
+                    <Text style={styles.title}>Where's My Stuff</Text>
+                    <View style={styles.entryBoxWrapper}>
+                        <TextInput
+                            style={styles.entryBox}
+                            placeholder="Item"
+                            onChangeText={text => this.handleItemChange(text)}
+                        />
+                        <TextInput
+                            style={styles.entryBox}
+                            placeholder="Location"
+                            onChangeText={text => this.handleLocChange(text)}
+                        />
+                    </View>
+                    <ItemTable
+                        item={this.state.item}
+                        location={this.state.location}
+                    />
+                </ScrollView>
+            </SafeAreaView>
+        );
+    }
+}
 
 const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontSize: 30,
     },
-    entrybox: {
-        margin: 15,
+    entryBox: {
+        fontSize: 16,
+        margin: 5,
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,
+        flex: 1,
+    },
+    entryBoxWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
 });
 
