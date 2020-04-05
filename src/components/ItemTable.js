@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {Table, TableWrapper, Row} from 'react-native-table-component';
 import {StyleSheet, ScrollView, View, Dimensions} from 'react-native';
 import AddButton from './AddButton';
+import SettingsButton from './SettingsButton';
 
 // var screenHeight = Dimensions.get('window').height;
 var screenWidth = Dimensions.get('window').width;
@@ -19,7 +20,7 @@ class ItemTable extends Component {
                 {item: 'Keys', location: 'Fridge'},
                 {item: 'Wallet', location: 'Dishwasher'},
             ],
-            rows: [],
+            rows: [['A', 'B']],
             newEntry: '',
         };
     }
@@ -41,13 +42,15 @@ class ItemTable extends Component {
                 <AddButton onPress={this.addEntry} />
                 <ScrollView horizontal={true}>
                     <View style={styles.tableContainer}>
+                        <SettingsButton />
                         <Table borderStyle={{borderColor: '#C1C0B9'}}>
                             <Row
                                 data={state.tableHead}
                                 widthArr={state.widthArr}
                                 style={styles.head}
-                                textStyle={styles.text}
-                            />
+                                textStyle={styles.text}>
+                                >
+                            </Row>
                         </Table>
                         <ScrollView style={styles.dataWrapper}>
                             <Table borderStyle={{borderColor: '#C1C0B9'}}>
